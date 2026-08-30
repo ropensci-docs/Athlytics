@@ -1,0 +1,13 @@
+{
+  "commit": {
+    "commit": "121d92c6fbba90e49c2b7350f81ac792b7a825f4",
+    "author": "Zhiang He <ang@hezhiang.com>",
+    "time": "2026-06-15T14:12:10Z",
+    "files": 1,
+    "merge": false,
+    "message": "update\n"
+  },
+  "repo": "https://github.com/ropensci/Athlytics",
+  "pkg": "Athlytics",
+  "time": "2026-08-30T07:54:24Z"
+}

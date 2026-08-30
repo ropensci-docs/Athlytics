@@ -1,0 +1,29 @@
+# Find Best Effort for Target Distance
+
+Locates the fastest contiguous sub-segment that covers `target_distance`
+within a stream. Two robustness improvements over the original
+nearest-row approach:
+
+## Usage
+
+``` r
+find_best_effort(stream_data, target_distance)
+```
+
+## Details
+
+1.  **Strictly-monotonic-distance filter**: the input is reduced to rows
+    where cumulative distance and time both strictly increase, so
+    spurious backward jumps (GPS glitches, laps restarting the distance
+    counter) no longer contribute fake short intervals.
+
+2.  **Linear interpolation at both segment boundaries**: candidate
+    windows may start or end between recorded samples. Interpolating
+    both boundaries removes nearest-row bias on low-Hz streams and
+    avoids missing end-anchored fastest efforts whose true start falls
+    between samples.
+
+3.  **Bounded candidate sweep**: candidates are generated from recorded
+    starts and recorded ends shifted back by `target_distance`, avoiding
+    the previous O(n^2) scan while preserving exact fixed-distance
+    intervals.
